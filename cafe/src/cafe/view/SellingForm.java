@@ -36,7 +36,7 @@ public class SellingForm extends javax.swing.JFrame {
         ItemList = new javax.swing.JLabel();
         SellForm = new javax.swing.JLabel();
         ViewBills = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        LogoutBtn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -48,7 +48,7 @@ public class SellingForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbItem = new javax.swing.JTable();
         txtPrice = new javax.swing.JTextField();
-        txtQuantity = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBill = new javax.swing.JTable();
@@ -91,9 +91,14 @@ public class SellingForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel4.setText("Logout");
+        LogoutBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LogoutBtn.setForeground(new java.awt.Color(0, 51, 204));
+        LogoutBtn.setText("Logout");
+        LogoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogoutBtnMouseClicked(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(207, 190, 156));
 
@@ -148,7 +153,7 @@ public class SellingForm extends javax.swing.JFrame {
 
         txtPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        txtQuantity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtQty.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -159,7 +164,7 @@ public class SellingForm extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Seller", "DateTime", "Total", "Name", "Price"
+                "ID", "Seller", "Quantity", "Total", "Name", "Price"
             }
         ));
         tbBill.setRowHeight(25);
@@ -224,7 +229,7 @@ public class SellingForm extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(txtSeller, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -282,7 +287,7 @@ public class SellingForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addBtn)
@@ -302,7 +307,7 @@ public class SellingForm extends javax.swing.JFrame {
                     .addComponent(ItemList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SellForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ViewBills, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -316,7 +321,7 @@ public class SellingForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ViewBills, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,7 +378,8 @@ public class SellingForm extends javax.swing.JFrame {
             
             vector.add(bill.getId());
             vector.add(bill.getSeller());
-            vector.add(bill.getDate());
+//            vector.add(bill.getDate());
+            vector.add(bill.getQty());
             vector.add(bill.getTotal());
             for(Item item : listItem){
                 vector.add(item.getName());
@@ -390,7 +396,8 @@ public class SellingForm extends javax.swing.JFrame {
         txtName.setText(null);
         txtSeller.setText(null);
         txtPrice.setText(null);
-        txtQuantity.setText(null);
+        txtQty.setText(null);
+        txtTotal.setText(null);
     }
     
     private void tbItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbItemMouseClicked
@@ -403,7 +410,7 @@ public class SellingForm extends javax.swing.JFrame {
 
 //    validate input
     public boolean validateInput() {
-        if (txtName.getText().isEmpty() || txtPrice.getText().isEmpty() || txtQuantity.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || txtPrice.getText().isEmpty() || txtQty.getText().isEmpty()) {
             return false;
         }
         return true;
@@ -417,9 +424,10 @@ public class SellingForm extends javax.swing.JFrame {
             Bill bill = new Bill();
             bill.setId(Integer.parseInt(txtID.getText()));
             bill.setSeller(txtSeller.getText());
-            int Total = Integer.valueOf(txtPrice.getText()) * Integer.valueOf(txtQuantity.getText());
+            int Total = Integer.valueOf(txtPrice.getText()) * Integer.valueOf(txtQty.getText());
             LocalDateTime datetime = LocalDateTime.now();
             bill.setDate(datetime.toString());
+            bill.setQty(Integer.parseInt(txtQty.getText()));
             bill.setTotal(Total);
             System.out.println(Total);
             System.out.println(bill.toString());
@@ -480,6 +488,11 @@ public class SellingForm extends javax.swing.JFrame {
         txtTotal.setText(model.getValueAt(i, 3).toString());
     }//GEN-LAST:event_tbBillMouseClicked
 
+    private void LogoutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBtnMouseClicked
+        new LoginForm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_LogoutBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -533,6 +546,7 @@ public class SellingForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ItemList;
+    private javax.swing.JLabel LogoutBtn;
     private javax.swing.JLabel SellForm;
     private javax.swing.JLabel ViewBills;
     private javax.swing.JButton addBtn;
@@ -540,7 +554,6 @@ public class SellingForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -556,7 +569,7 @@ public class SellingForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtQty;
     private javax.swing.JTextField txtSeller;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables

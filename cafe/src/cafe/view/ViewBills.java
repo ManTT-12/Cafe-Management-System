@@ -37,7 +37,7 @@ public class ViewBills extends javax.swing.JFrame {
         ItemForm = new javax.swing.JLabel();
         SellForm = new javax.swing.JLabel();
         SellList = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        LogoutBtn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -53,13 +53,13 @@ public class ViewBills extends javax.swing.JFrame {
 
         tbBillList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Seller", "DateTime", "Total"
+                "ID", "Seller", "DateTime", "Title 4", "Total"
             }
         ));
         tbBillList.setRowHeight(25);
@@ -118,9 +118,14 @@ public class ViewBills extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 51, 204));
-        jLabel4.setText("Logout");
+        LogoutBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LogoutBtn.setForeground(new java.awt.Color(0, 51, 204));
+        LogoutBtn.setText("Logout");
+        LogoutBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogoutBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,7 +137,7 @@ public class ViewBills extends javax.swing.JFrame {
                     .addComponent(SellForm, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ItemForm, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SellList, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -146,7 +151,7 @@ public class ViewBills extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SellList, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -183,6 +188,11 @@ public class ViewBills extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_SellListMouseClicked
 
+    private void LogoutBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutBtnMouseClicked
+        new LoginForm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_LogoutBtnMouseClicked
+
 //    get list bill data
     public void getListBill(){
         listBill = billDAO.getAllBill();
@@ -198,6 +208,7 @@ public class ViewBills extends javax.swing.JFrame {
             vector.add(bill.getId());
             vector.add(bill.getSeller());
             vector.add(bill.getDate());
+            vector.add(bill.getQty());
             vector.add(bill.getTotal());
             
             modal.addRow(vector);
@@ -238,9 +249,9 @@ public class ViewBills extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ItemForm;
+    private javax.swing.JLabel LogoutBtn;
     private javax.swing.JLabel SellForm;
     private javax.swing.JLabel SellList;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

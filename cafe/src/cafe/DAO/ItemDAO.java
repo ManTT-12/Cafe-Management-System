@@ -40,6 +40,7 @@ public class ItemDAO {
         }
         return item;
     }
+    
 //    get all items
     public List<Item> getAllItems() {
         List<Item> listItem = new ArrayList<>();

@@ -26,14 +26,15 @@ public class BillDAO {
         conn.getConnection();
         
         try{
-            String query = ("INSERT INTO BillTbl VALUES(?,?,?,?)");
+            String query = ("INSERT INTO BillTbl VALUES(?,?,?,?,?)");
             
             PreparedStatement st = conn.connect.prepareStatement(query);
             st.setInt(1, bill.getId());
             st.setString(2, bill.getSeller());
             String datetime = LocalDateTime.now().toString();
             st.setString(3, datetime);
-            st.setInt(4, bill.getTotal());
+            st.setInt(4, bill.getQty());
+            st.setInt(5, bill.getTotal());
             
             st.executeUpdate();
             return true;
@@ -81,7 +82,8 @@ public class BillDAO {
                 bill.setId(rs.getInt(1));
                 bill.setSeller(rs.getString(2));
                 bill.setDate(rs.getString(3));
-                bill.setTotal(rs.getInt(4));
+                bill.setQty(rs.getInt(4));
+                bill.setTotal(rs.getInt(5));
 
                 listBill.add(bill);
             }

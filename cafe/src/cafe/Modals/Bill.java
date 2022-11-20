@@ -12,6 +12,7 @@ public class Bill {
     private int Id;
     private String Seller;
     private String date;
+    private int qty;
     private int total;
     
     @Override
@@ -20,6 +21,7 @@ public class Bill {
                 "Id=" + Id +
                 ", Seller=" + Seller +
                 ", date='" + date + '\'' +
+                ", Qty=" + qty +
                 ", total=" + total +
                 '}';
     }
@@ -27,10 +29,11 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(int Id, String Seller, String date, int total) {
+    public Bill(int Id, String Seller, String date, int qty, int total) {
         this.Id = Id;
         this.Seller = Seller;
         this.date = date;
+        this.qty = qty;
         this.total = total;
     }
 
@@ -56,6 +59,14 @@ public class Bill {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public int getTotal() {
