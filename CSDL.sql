@@ -1,3 +1,8 @@
+create database CafeDB
+
+use CafeDB
+go
+
 CREATE TABLE ProductTbl
 (
 	PId INT PRIMARY KEY not null,

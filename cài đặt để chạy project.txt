@@ -1,0 +1,3 @@
+Tải file sqljdbc về 
+Mở netbeans ở project mình muốn thêm vào click chuột phải chọn jar file, click chọn file vừa tải về để có thể kết nối sql server ở dưới máy.
+sau đó tạo java class và code 1 đoạn code để kết nối tới sql server.
