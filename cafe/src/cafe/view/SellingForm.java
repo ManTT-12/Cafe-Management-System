@@ -2,6 +2,7 @@ package cafe.view;
 
 import cafe.DAO.ItemDAO;
 import cafe.DAO.BillDAO;
+import cafe.Modals.Account;
 import cafe.Modals.Item;
 import cafe.Modals.Bill;
 import java.time.LocalDateTime;
@@ -34,7 +35,6 @@ public class SellingForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         ItemList = new javax.swing.JLabel();
-        SellForm = new javax.swing.JLabel();
         ViewBills = new javax.swing.JLabel();
         LogoutBtn = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -59,6 +59,9 @@ public class SellingForm extends javax.swing.JFrame {
         txtTotal = new javax.swing.JTextField();
         deleteBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Account = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,15 +73,6 @@ public class SellingForm extends javax.swing.JFrame {
         ItemList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ItemListMouseClicked(evt);
-            }
-        });
-
-        SellForm.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        SellForm.setForeground(new java.awt.Color(0, 51, 204));
-        SellForm.setText("Selling");
-        SellForm.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SellFormMouseClicked(evt);
             }
         });
 
@@ -177,7 +171,6 @@ public class SellingForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbBill);
 
         txtSeller.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtSeller.setText("User1");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setText("ID:");
@@ -297,6 +290,28 @@ public class SellingForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel2.setText("Category");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CategoryFormMouseClicked(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(249, 78, 52));
+        jLabel3.setText("H&M");
+
+        Account.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Account.setForeground(new java.awt.Color(0, 51, 204));
+        Account.setText("Account");
+        Account.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AccountMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -305,21 +320,27 @@ public class SellingForm extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ItemList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SellForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ViewBills, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                    .addComponent(LogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LogoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(Account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(115, 115, 115)
                 .addComponent(ItemList, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SellForm, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(62, 62, 62)
                 .addComponent(ViewBills, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Account, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LogoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -372,16 +393,16 @@ public class SellingForm extends javax.swing.JFrame {
     public void showBillData() {
         DefaultTableModel modal = (DefaultTableModel) tbBill.getModel();
         modal.setRowCount(0);
-        
+
         for (Bill bill : listBill) {
             Vector vector = new Vector();
-            
+
             vector.add(bill.getId());
             vector.add(bill.getSeller());
 //            vector.add(bill.getDate());
             vector.add(bill.getQty());
             vector.add(bill.getTotal());
-            for(Item item : listItem){
+            for (Item item : listItem) {
                 vector.add(item.getName());
                 vector.add(item.getPrice());
             }
@@ -391,7 +412,7 @@ public class SellingForm extends javax.swing.JFrame {
     }
 
 //    refresh input
-    public void refreshInput(){
+    public void refreshInput() {
         txtID.setText(null);
         txtName.setText(null);
         txtSeller.setText(null);
@@ -399,7 +420,7 @@ public class SellingForm extends javax.swing.JFrame {
         txtQty.setText(null);
         txtTotal.setText(null);
     }
-    
+
     private void tbItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbItemMouseClicked
         int i = tbItem.getSelectedRow();
         TableModel model = tbItem.getModel();
@@ -423,7 +444,7 @@ public class SellingForm extends javax.swing.JFrame {
         } else {
             Bill bill = new Bill();
             bill.setId(Integer.parseInt(txtID.getText()));
-            bill.setSeller(txtSeller.getText());
+            bill.setSeller((txtSeller.getText()));
             int Total = Integer.valueOf(txtPrice.getText()) * Integer.valueOf(txtQty.getText());
             LocalDateTime datetime = LocalDateTime.now();
             bill.setDate(datetime.toString());
@@ -434,6 +455,8 @@ public class SellingForm extends javax.swing.JFrame {
             boolean kq = billDAO.InsertBill(bill);
             if (kq) {
                 listBill = billDAO.getAllBill();
+                refreshInput();
+                showBillData();
                 JOptionPane.showMessageDialog(this, "Bill adđed");
             } else {
                 JOptionPane.showMessageDialog(this, "Bill add fail");
@@ -447,11 +470,6 @@ public class SellingForm extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_ItemListMouseClicked
 
-    private void SellFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SellFormMouseClicked
-        new SellingForm().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_SellFormMouseClicked
-
     private void ViewBillsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewBillsMouseClicked
         new ViewBills().setVisible(true);
         this.setVisible(false);
@@ -464,15 +482,16 @@ public class SellingForm extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        if(txtID.getText().isEmpty()){
-            JOptionPane.showConfirmDialog(this,"Choose Bill");
+        if (txtID.getText().isEmpty()) {
+            JOptionPane.showConfirmDialog(this, "Choose Bill");
         } else {
-            int choose = JOptionPane.showConfirmDialog(this, "You want delete this bill? " + txtID.getText(),"confirm",JOptionPane.YES_NO_OPTION);
-            
+            int choose = JOptionPane.showConfirmDialog(this, "You want delete this bill? " + txtID.getText(), "confirm", JOptionPane.YES_NO_OPTION);
+
             int id = Integer.parseInt(txtID.getText());
-            if(choose == JOptionPane.YES_OPTION){
-                if(billDAO.DeleteBill(id)){
+            if (choose == JOptionPane.YES_OPTION) {
+                if (billDAO.DeleteBill(id)) {
                     JOptionPane.showMessageDialog(this, "Deleted bill");
+                    showBillData();
                 } else {
                     JOptionPane.showMessageDialog(this, "Delete fail");
                 }
@@ -492,6 +511,16 @@ public class SellingForm extends javax.swing.JFrame {
         new LoginForm().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_LogoutBtnMouseClicked
+
+    private void CategoryFormMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategoryFormMouseClicked
+        new CategoryForm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CategoryFormMouseClicked
+
+    private void AccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountMouseClicked
+        new AccountForm().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AccountMouseClicked
 
     /**
      * @param args the command line arguments
@@ -545,15 +574,17 @@ public class SellingForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Account;
     private javax.swing.JLabel ItemList;
     private javax.swing.JLabel LogoutBtn;
-    private javax.swing.JLabel SellForm;
     private javax.swing.JLabel ViewBills;
     private javax.swing.JButton addBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

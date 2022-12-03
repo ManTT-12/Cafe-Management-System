@@ -11,13 +11,13 @@ package cafe.Modals;
 public class Item {
     private int Id;
     private String Name;
-    private String Category;
+    private int Category;
     private int price;
 
     public Item() {
     }
 
-    public Item(int Id, String Name, String Category, int price) {
+    public Item(int Id, String Name, int Category, int price) {
         this.Id = Id;
         this.Name = Name;
         this.Category = Category;
@@ -40,11 +40,11 @@ public class Item {
         this.Name = Name;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return Category;
     }
 
-    public void setCategory(String Category) {
+    public void setCategory(int Category) {
         this.Category = Category;
     }
 

@@ -5,7 +5,8 @@
 package cafe.view;
 
 import cafe.Modals.Account;
-import cafe.DAO.AccListDAO;
+import cafe.DAO.AccountDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class AccountForm extends javax.swing.JFrame {
     
     List<Account> listAcc = new ArrayList<>();
-    AccListDAO acclistDAO = new AccListDAO();
+    AccountDAO accDAO = new AccountDAO();
     
     public AccountForm() {
         initComponents();
@@ -25,8 +26,9 @@ public class AccountForm extends javax.swing.JFrame {
     
 //    get list acc
     public void getListAcc(){
-        listAcc = acclistDAO.getAllAccount();
+        listAcc = accDAO.getAllAccount();
     }
+    
     public void showAccount(){
         DefaultTableModel modal = (DefaultTableModel) tbAccounts.getModel();
         modal.setRowCount(0);
@@ -36,6 +38,7 @@ public class AccountForm extends javax.swing.JFrame {
             
             vector.add(acc.getId());
             vector.add(acc.getUsername());
+            vector.add(acc.getPassword());
             
             modal.addRow(vector);
         }
@@ -57,18 +60,21 @@ public class AccountForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("List Of Accounts");
 
         tbAccounts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Username"
+                "ID", "Username", "Password"
             }
         ));
         jScrollPane1.setViewportView(tbAccounts);

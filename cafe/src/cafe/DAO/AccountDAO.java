@@ -11,8 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountDAO {
 
@@ -37,7 +37,8 @@ public class AccountDAO {
 
             if (rs.next()) {
                 int id = rs.getInt("id");
-                acc = new Account(id, username, password);
+                int lv = Integer.parseInt(rs.getString("Level"));
+                acc = new Account(id, username, password, lv);
                 System.out.println(acc.getId());
             }
         } catch (SQLException ex) {
@@ -64,13 +65,14 @@ public class AccountDAO {
         conn.getConnection();
 
         try {
-            String query = "insert into Account values(?,?,?)";
+            String query = "insert into Account values(?,?,?,?)";
 
             PreparedStatement st = conn.connect.prepareStatement(query);
 
             st.setInt(1, acc.getId());
             st.setString(2, acc.getUsername());
             st.setString(3, acc.getPassword());
+            st.setInt(4, acc.getLevel());
 
             st.executeUpdate();
             return true;
@@ -80,5 +82,54 @@ public class AccountDAO {
             conn.closeConnect();
         }
         return false;
+    }
+    
+//    get list account
+    public List<Account> getAllAccount() {
+        List<Account> listAcc = new ArrayList<>();
+        conn.getConnection();
+
+        try {
+            String query = "select * from account";
+            Statement st = conn.connect.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Account acc = new Account();
+                acc.setId(rs.getInt(1));
+                acc.setUsername(rs.getString(2));
+                acc.setPassword(rs.getString(3));
+                acc.setLevel(rs.getInt(4));
+
+                listAcc.add(acc);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return listAcc;
+    }
+    
+//    search acc by id
+    public Account searchAccById(int id){
+        conn.getConnection();
+        Account acc = new Account();
+        try {
+            String query = "select * from account where id =" + id;
+            Statement st = conn.connect.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            while(rs.next()){
+                acc.setId(rs.getInt(1));
+                acc.setUsername(rs.getString(2));
+                acc.setPassword(rs.getString(3));
+                acc.setLevel(rs.getInt(4));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return acc;
     }
 }

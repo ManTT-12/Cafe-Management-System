@@ -30,7 +30,7 @@ public class ItemDAO {
             while(rs.next()){
                 item.setId(rs.getInt(1));
                 item.setName(rs.getString(2));
-                item.setCategory(rs.getString(3));
+                item.setCategory(rs.getInt(3));
                 item.setPrice(rs.getInt(4));
             }
         } catch (SQLException e){
@@ -54,7 +54,7 @@ public class ItemDAO {
                 Item item = new Item();
                 item.setId(rs.getInt(1));
                 item.setName(rs.getString(2));
-                item.setCategory(rs.getString(3));
+                item.setCategory(rs.getInt(3));
                 item.setPrice(rs.getInt(4));
 
                 listItem.add(item);
@@ -77,7 +77,7 @@ public class ItemDAO {
             PreparedStatement st = conn.connect.prepareStatement(query);
             st.setInt(1, item.getId());
             st.setString(2, item.getName());
-            st.setString(3, item.getCategory());
+            st.setInt(3, item.getCategory());
             st.setInt(4, item.getPrice());
 
             st.executeUpdate();
@@ -98,13 +98,13 @@ public class ItemDAO {
         conn.getConnection();
 
         try {
-            String query = ("update ProductTbl set PName=?, Category=?, price=? where PId=?");
+            String query = "update ProductTbl set PName=?, Category_id=?, price=? where PId=?";
 
             PreparedStatement st = conn.connect.prepareStatement(query);
-            st.setInt(4, item.getId());
             st.setString(1, item.getName());
-            st.setString(2, item.getCategory());
+            st.setInt(2, item.getCategory());
             st.setInt(3, item.getPrice());
+            st.setInt(4, item.getId());
 
             st.executeUpdate();
             return true;
