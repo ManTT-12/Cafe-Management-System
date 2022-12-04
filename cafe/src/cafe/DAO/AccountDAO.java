@@ -29,7 +29,7 @@ public class AccountDAO {
 
         try {
             Statement st = conn.connect.createStatement();
-            String query = "SELECT * FROM Account WHERE  username = '" +
+            String query = "select * from account where  username = '" +
                     username + "\' AND " + "password = \'" + password + "\'";
 
             ResultSet rs = st.executeQuery(query);
@@ -37,8 +37,7 @@ public class AccountDAO {
 
             if (rs.next()) {
                 int id = rs.getInt("id");
-                int lv = Integer.parseInt(rs.getString("Level"));
-                acc = new Account(id, username, password, lv);
+                acc = new Account(id, username, password);
                 System.out.println(acc.getId());
             }
         } catch (SQLException ex) {
@@ -61,29 +60,6 @@ public class AccountDAO {
         }
     }
 
-    public boolean InsertAccount(Account acc) {
-        conn.getConnection();
-
-        try {
-            String query = "insert into Account values(?,?,?,?)";
-
-            PreparedStatement st = conn.connect.prepareStatement(query);
-
-            st.setInt(1, acc.getId());
-            st.setString(2, acc.getUsername());
-            st.setString(3, acc.getPassword());
-            st.setInt(4, acc.getLevel());
-
-            st.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            conn.closeConnect();
-        }
-        return false;
-    }
-    
 //    get list account
     public List<Account> getAllAccount() {
         List<Account> listAcc = new ArrayList<>();
@@ -98,7 +74,6 @@ public class AccountDAO {
                 acc.setId(rs.getInt(1));
                 acc.setUsername(rs.getString(2));
                 acc.setPassword(rs.getString(3));
-                acc.setLevel(rs.getInt(4));
 
                 listAcc.add(acc);
             }
@@ -108,6 +83,28 @@ public class AccountDAO {
             conn.closeConnect();
         }
         return listAcc;
+    }
+    
+    public boolean InsertAccount(Account acc) {
+        conn.getConnection();
+
+        try {
+            String query = "insert into Account values(?,?,?)";
+
+            PreparedStatement st = conn.connect.prepareStatement(query);
+
+            st.setInt(1, acc.getId());
+            st.setString(2, acc.getUsername());
+            st.setString(3, acc.getPassword());
+
+            st.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return false;
     }
     
 //    search acc by id
@@ -123,7 +120,6 @@ public class AccountDAO {
                 acc.setId(rs.getInt(1));
                 acc.setUsername(rs.getString(2));
                 acc.setPassword(rs.getString(3));
-                acc.setLevel(rs.getInt(4));
             }
         } catch (SQLException e){
             e.printStackTrace();

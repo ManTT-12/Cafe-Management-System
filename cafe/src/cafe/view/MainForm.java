@@ -8,14 +8,6 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
     }
 
-    public MainForm(Account acc) {
-        initComponents();
-        if (acc.getLevel() == 0) {
-        } else {
-            Account.setVisible(false);
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,6 +150,7 @@ public class MainForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeBtnActionPerformed

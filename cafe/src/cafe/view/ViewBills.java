@@ -55,13 +55,13 @@ public class ViewBills extends javax.swing.JFrame {
 
         tbBillList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Seller", "DateTime", "Title 4", "Total"
+                "ID", "Seller", "Item", "DateTime", "Title 5", "Total"
             }
         ));
         tbBillList.setRowHeight(25);
@@ -233,6 +233,7 @@ public class ViewBills extends javax.swing.JFrame {
             
             vector.add(bill.getId());
             vector.add(bill.getSeller());
+            vector.add(bill.getItemName());
             vector.add(bill.getDate());
             vector.add(bill.getQty());
             vector.add(bill.getTotal());

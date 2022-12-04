@@ -12,16 +12,14 @@ public class Account {
     private int id;
     private String username;
     private String password;
-    private int level;
 
     public Account() {
     }
 
-    public Account(int id, String username, String password, int level) {
+    public Account(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.level = level;
     }
 
     public int getId() {
@@ -47,13 +45,4 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
 }

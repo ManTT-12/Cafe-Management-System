@@ -121,7 +121,15 @@ public class ItemForm extends javax.swing.JFrame {
             new String [] {
                 "ID", "Name", "Category", "Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbItem.setRowHeight(25);
         tbItem.setShowHorizontalLines(true);
         tbItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -337,7 +345,8 @@ public class ItemForm extends javax.swing.JFrame {
 
             vector.add(item.getId());
             vector.add(item.getName());
-            vector.add(item.getCategory());
+//            vector.add(item.getCategory());
+            vector.add(item.getCategoryName());
             vector.add(item.getPrice());
 
             modal.addRow(vector);
@@ -346,7 +355,8 @@ public class ItemForm extends javax.swing.JFrame {
 
 //validated input
     public boolean validateInput() {
-        if (txtID.getText().isBlank() || txtName.getText().isBlank() || cbCate.getSelectedIndex() == -1 || txtPrice.getText().isBlank()) {
+        CBCategory CBCate = (CBCategory) cbCate.getSelectedItem();
+        if (txtID.getText().isEmpty() || txtName.getText().isEmpty() || CBCate.getId() == 0 || txtPrice.getText().isEmpty()) {
             return false;
         }
         return true;
@@ -378,7 +388,7 @@ public class ItemForm extends javax.swing.JFrame {
 
 //    Sửa thông tin OK
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
-        if (txtID.getText().isBlank() || !validateInput()) {
+        if (!validateInput()) {
             JOptionPane.showMessageDialog(this, "Choose Item , please");
         } else {
             int choose = JOptionPane.showConfirmDialog(this, "Do you want edit item " + txtID.getText(), "confirm", JOptionPane.YES_NO_OPTION);
@@ -386,8 +396,10 @@ public class ItemForm extends javax.swing.JFrame {
 //            Update action
             int id = Integer.parseInt(txtID.getText());
             if (choose == JOptionPane.YES_OPTION) {
+                
                 Item oldItem = itemDAO.searchItemById(id);
                 System.out.println(oldItem.toString());
+                
                 Item item = new Item();
                 item.setId(id);
                 item.setName(txtName.getText());
@@ -445,6 +457,8 @@ public class ItemForm extends javax.swing.JFrame {
     }//GEN-LAST:event_RefreshBtnActionPerformed
 
     private void tbItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbItemMouseClicked
+        CategoryDAO cateDAO = new CategoryDAO();
+        
         int i = tbItem.getSelectedRow();
         TableModel model = tbItem.getModel();
         
@@ -452,7 +466,10 @@ public class ItemForm extends javax.swing.JFrame {
         txtName.setText(model.getValueAt(i,1).toString());
 
         //set combo box selected category by select row
+        String cateName = model.getValueAt(i, 2).toString();
+        Category cate = cateDAO.getCateByName(cateName);
         DefaultComboBoxModel defaultComboBoxModel = (DefaultComboBoxModel) cbCate.getModel();
+        defaultComboBoxModel.setSelectedItem(new CBCategory(cate.getId(),cate.getName()));
 
         txtPrice.setText(model.getValueAt(i,3).toString());
     }//GEN-LAST:event_tbItemMouseClicked

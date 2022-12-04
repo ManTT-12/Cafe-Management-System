@@ -155,10 +155,10 @@ public class SellingForm extends javax.swing.JFrame {
 
         tbBill.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Seller", "Quantity", "Total", "Name", "Price"
+                "ID", "Seller", "Name", "Quantity", "Total"
             }
         ));
         tbBill.setRowHeight(25);
@@ -215,7 +215,7 @@ public class SellingForm extends javax.swing.JFrame {
                                 .addGap(101, 101, 101)
                                 .addComponent(jLabel5))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(426, 426, 426)
+                                .addGap(441, 441, 441)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -361,6 +361,7 @@ public class SellingForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 //    get list item
@@ -382,7 +383,7 @@ public class SellingForm extends javax.swing.JFrame {
 
             vector.add(item.getId());
             vector.add(item.getName());
-            vector.add(item.getCategory());
+            vector.add(item.getCategoryName());
             vector.add(item.getPrice());
 
             modal.addRow(vector);
@@ -399,16 +400,21 @@ public class SellingForm extends javax.swing.JFrame {
 
             vector.add(bill.getId());
             vector.add(bill.getSeller());
+            vector.add(bill.getItemName());
 //            vector.add(bill.getDate());
             vector.add(bill.getQty());
             vector.add(bill.getTotal());
-            for (Item item : listItem) {
-                vector.add(item.getName());
-                vector.add(item.getPrice());
-            }
-            modal.addRow(vector);
 
+            modal.addRow(vector);
         }
+    }
+
+//    validate input
+    public boolean validateInput() {
+        if (txtName.getText().isEmpty() || txtPrice.getText().isEmpty() || txtQty.getText().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 //    refresh input
@@ -429,30 +435,26 @@ public class SellingForm extends javax.swing.JFrame {
         txtPrice.setText(model.getValueAt(i, 3).toString());
     }//GEN-LAST:event_tbItemMouseClicked
 
-//    validate input
-    public boolean validateInput() {
-        if (txtName.getText().isEmpty() || txtPrice.getText().isEmpty() || txtQty.getText().isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-
 //    add bill
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         if (!validateInput()) {
             JOptionPane.showMessageDialog(this, "Information must be required");
         } else {
             Bill bill = new Bill();
+
             bill.setId(Integer.parseInt(txtID.getText()));
             bill.setSeller((txtSeller.getText()));
-            int Total = Integer.valueOf(txtPrice.getText()) * Integer.valueOf(txtQty.getText());
+            bill.setItemName(txtName.getText());
             LocalDateTime datetime = LocalDateTime.now();
             bill.setDate(datetime.toString());
             bill.setQty(Integer.parseInt(txtQty.getText()));
+            
+            int Total = Integer.valueOf(txtPrice.getText()) * Integer.valueOf(txtQty.getText());
             bill.setTotal(Total);
-            System.out.println(Total);
+
             System.out.println(bill.toString());
             boolean kq = billDAO.InsertBill(bill);
+
             if (kq) {
                 listBill = billDAO.getAllBill();
                 refreshInput();
@@ -491,6 +493,7 @@ public class SellingForm extends javax.swing.JFrame {
             if (choose == JOptionPane.YES_OPTION) {
                 if (billDAO.DeleteBill(id)) {
                     JOptionPane.showMessageDialog(this, "Deleted bill");
+                    getListBill();
                     showBillData();
                 } else {
                     JOptionPane.showMessageDialog(this, "Delete fail");

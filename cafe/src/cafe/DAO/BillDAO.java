@@ -16,85 +16,86 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 public class BillDAO {
+
     public ConnectDB conn;
-    public BillDAO(){
+
+    public BillDAO() {
         conn = new ConnectDB();
     }
-    
-//    insert bill
-    public boolean InsertBill(Bill bill){
-        conn.getConnection();
-        
-        try{
-            String query = ("INSERT INTO BillTbl VALUES(?,?,?,?,?)");
-            
-            PreparedStatement st = conn.connect.prepareStatement(query);
-            st.setInt(1, bill.getId());
-            st.setString(2, bill.getSeller());
-            String datetime = LocalDateTime.now().toString();
-            st.setString(3, datetime);
-            st.setInt(4, bill.getQty());
-            st.setInt(5, bill.getTotal());
-            
-            st.executeUpdate();
-            return true;
-        } catch (SQLException e){
-            e.printStackTrace();
-        } finally {
-            conn.closeConnect();
-        }
-        return false;
-    }
-    
-//    delete bill
-    public boolean DeleteBill(int id){
-        conn.getConnection();
-        
-        try{
-            String query = "delete from BillTbl where BId=?";
-            PreparedStatement st = conn.connect.prepareStatement(query);
-            st.setInt(1, id);
-            
-            st.executeUpdate();
-           return true;
-        } catch (SQLException e){
-            e.printStackTrace();
-        } finally {
-            conn.closeConnect();
-        }
-        return false;
-    }
-//    get all bill
-    public List<Bill> getAllBill(){
+
+    //    get all bill
+    public List<Bill> getAllBill() {
         List<Bill> listBill = new ArrayList<>();
+        conn.getConnection();
 
-        try{
-            conn.getConnection();
-
+        try {
+            String query = "select a.id, a.seller, b.name, a.bDate, a.bQty, a.total " +
+                    "from bill a join product b on a.pName = b.name";
             Statement st = conn.connect.createStatement();
-
-            String query = "SELECT * FROM BillTbl";
-
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 Bill bill = new Bill();
                 bill.setId(rs.getInt(1));
                 bill.setSeller(rs.getString(2));
-                bill.setDate(rs.getString(3));
-                bill.setQty(rs.getInt(4));
-                bill.setTotal(rs.getInt(5));
+                bill.setItemName(rs.getString(3));
+                bill.setDate(rs.getString(4));
+                bill.setQty(rs.getInt(5));
+                bill.setTotal(rs.getInt(6));
 
                 listBill.add(bill);
             }
-
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             conn.closeConnect();
         }
         return listBill;
     }
+
+//    insert bill
+    public boolean InsertBill(Bill bill) {
+        conn.getConnection();
+
+        try {
+            String query = "insert into bill values(?,?,?,?,?,?)";
+
+            PreparedStatement st = conn.connect.prepareStatement(query);
+            st.setInt(1, bill.getId());
+            st.setString(2, bill.getSeller());
+            st.setString(3, bill.getItemName());
+            String datetime = LocalDateTime.now().toString();
+            st.setString(4, datetime);
+            st.setInt(5, bill.getQty());
+            st.setInt(6, bill.getTotal());
+
+            st.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return false;
+    }
+
+//    delete bill
+    public boolean DeleteBill(int id) {
+        conn.getConnection();
+
+        try {
+            String query = "delete from bill where id=?";
+            PreparedStatement st = conn.connect.prepareStatement(query);
+            st.setInt(1, id);
+
+            st.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return false;
+    }
+
 }

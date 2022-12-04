@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CategoryDAO {
 
@@ -92,6 +94,34 @@ public class CategoryDAO {
         return cate;
     }
 
+//    get category by name
+    public Category getCateByName(String name) {
+        conn.getConnection();
+
+        Category cate = new Category();
+        try {
+            Statement st = conn.connect.createStatement();
+            String query = "select * from category WHERE cateName = \'" + name + "\'";
+
+            System.out.println(query);
+
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nameCate = rs.getString("cateName");
+
+                cate = new Category(id, nameCate);
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return cate;
+    }
+
 //    delete category
     public boolean deleteCategory(int id) {
 
@@ -99,7 +129,7 @@ public class CategoryDAO {
 
         try {
 
-            String query = "DELETE FROM category WHERE id =  ?";
+            String query = "delete from category where id =  ?";
 
             PreparedStatement st = conn.connect.prepareStatement(query);
 
@@ -126,7 +156,7 @@ public class CategoryDAO {
 
         try {
 
-            String query = "update category set cateName=? WHERE id=?";
+            String query = "update category set cateName=? where id=?";
 
             PreparedStatement st = conn.connect.prepareStatement(query);
             st.setString(1, cate.getName());

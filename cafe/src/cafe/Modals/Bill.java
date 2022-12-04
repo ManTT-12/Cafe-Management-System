@@ -11,6 +11,7 @@ package cafe.Modals;
 public class Bill {
     private int Id;
     private String Seller;
+    private String itemName;
     private String date;
     private int qty;
     private int total;
@@ -20,6 +21,7 @@ public class Bill {
         return "Bill{" +
                 "Id=" + Id +
                 ", Seller=" + Seller +
+                ", ItemName=" + itemName +
                 ", date='" + date + '\'' +
                 ", Qty=" + qty +
                 ", total=" + total +
@@ -29,9 +31,10 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(int Id, String Seller, String date, int qty, int total) {
+    public Bill(int Id, String Seller, String itemName, String date, int qty, int total) {
         this.Id = Id;
         this.Seller = Seller;
+        this.itemName = itemName;
         this.date = date;
         this.qty = qty;
         this.total = total;
@@ -51,6 +54,14 @@ public class Bill {
 
     public void setSeller(String Seller) {
         this.Seller = Seller;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public String getDate() {
