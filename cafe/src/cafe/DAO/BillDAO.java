@@ -29,7 +29,7 @@ public class BillDAO {
         conn.getConnection();
 
         try {
-            String query = "select a.id, a.seller, b.name, a.bDate, a.bQty, a.total " +
+            String query = "select a.id, a.buyer, b.name, a.bDate, a.bQty, a.total " +
                     "from bill a join product b on a.pName = b.name";
             Statement st = conn.connect.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -37,7 +37,7 @@ public class BillDAO {
             while (rs.next()) {
                 Bill bill = new Bill();
                 bill.setId(rs.getInt(1));
-                bill.setSeller(rs.getString(2));
+                bill.setBuyer(rs.getString(2));
                 bill.setItemName(rs.getString(3));
                 bill.setDate(rs.getString(4));
                 bill.setQty(rs.getInt(5));
@@ -62,7 +62,7 @@ public class BillDAO {
 
             PreparedStatement st = conn.connect.prepareStatement(query);
             st.setInt(1, bill.getId());
-            st.setString(2, bill.getSeller());
+            st.setString(2, bill.getBuyer());
             st.setString(3, bill.getItemName());
             String datetime = LocalDateTime.now().toString();
             st.setString(4, datetime);

@@ -10,9 +10,9 @@ import java.sql.DriverManager;
 //jdbc:sqlserver://localhost:1433;databaseName=CafeDB
 public class ConnectDB {
 
-    private String url = "jdbc:sqlserver://localhost:1433;databaseName=CafeDB";
-    private String user = "sa";
-    private String pass = "123";
+    private String url = "jdbc:mysql://localhost:3306/CafeDB";
+    private String user = "root";
+    private String pass = "";
 
     public Connection connect = null;
 
@@ -21,7 +21,7 @@ public class ConnectDB {
 
     public void getConnection() {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("com.mysql.jdbc.Driver");
             connect = DriverManager.getConnection(url, user, pass);
             System.out.println("Ket noi thanh cong!");
         } catch (Exception e) {

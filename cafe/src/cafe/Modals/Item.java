@@ -69,11 +69,11 @@ public class Item {
     @Override
     public String toString(){
         return "Item{" + 
-                "PId" + Id +
-                ", PName='" + Name + '\'' +
+                "Id" + Id +
+                ", Name='" + Name + '\'' +
                 ", price=" + price +
                 ", Category=" + Category +
-                ", CategoryName='" + CategoryName + '\'' +
+//                ", CategoryName='" + CategoryName + '\'' +
                 '}';                
     }
     

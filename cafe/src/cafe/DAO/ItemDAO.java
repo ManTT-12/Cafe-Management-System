@@ -24,8 +24,8 @@ public class ItemDAO {
         Item item = new Item();
         try {
             String query = "select * "
-                    + "from product a join category b"
-                    + "on a.id = b.id"
+                    + "from product a join category b "
+                    + "on a.id = b.id "
                     + "where a.id = " + id;
             Statement st = conn.connect.createStatement();
             ResultSet rs = st.executeQuery(query);

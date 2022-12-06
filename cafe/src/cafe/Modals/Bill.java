@@ -10,7 +10,7 @@ package cafe.Modals;
  */
 public class Bill {
     private int Id;
-    private String Seller;
+    private String Buyer;
     private String itemName;
     private String date;
     private int qty;
@@ -20,7 +20,7 @@ public class Bill {
     public String toString(){
         return "Bill{" +
                 "Id=" + Id +
-                ", Seller=" + Seller +
+                ", Buyer=" + Buyer +
                 ", ItemName=" + itemName +
                 ", date='" + date + '\'' +
                 ", Qty=" + qty +
@@ -31,9 +31,9 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(int Id, String Seller, String itemName, String date, int qty, int total) {
+    public Bill(int Id, String Buyer, String itemName, String date, int qty, int total) {
         this.Id = Id;
-        this.Seller = Seller;
+        this.Buyer = Buyer;
         this.itemName = itemName;
         this.date = date;
         this.qty = qty;
@@ -48,12 +48,12 @@ public class Bill {
         this.Id = Id;
     }
 
-    public String getSeller() {
-        return Seller;
+    public String getBuyer() {
+        return Buyer;
     }
 
-    public void setSeller(String Seller) {
-        this.Seller = Seller;
+    public void setBuyer(String Buyer) {
+        this.Buyer = Buyer;
     }
 
     public String getItemName() {

@@ -63,7 +63,15 @@ public class ViewBills extends javax.swing.JFrame {
             new String [] {
                 "ID", "Seller", "Item", "DateTime", "Title 5", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbBillList.setRowHeight(25);
         tbBillList.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tbBillList);
@@ -232,7 +240,7 @@ public class ViewBills extends javax.swing.JFrame {
             Vector vector = new Vector();
             
             vector.add(bill.getId());
-            vector.add(bill.getSeller());
+            vector.add(bill.getBuyer());
             vector.add(bill.getItemName());
             vector.add(bill.getDate());
             vector.add(bill.getQty());

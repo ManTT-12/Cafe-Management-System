@@ -356,7 +356,7 @@ public class ItemForm extends javax.swing.JFrame {
 //validated input
     public boolean validateInput() {
         CBCategory CBCate = (CBCategory) cbCate.getSelectedItem();
-        if (txtID.getText().isEmpty() || txtName.getText().isEmpty() || CBCate.getId() == 0 || txtPrice.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || CBCate.getId() == 0 || txtPrice.getText().isEmpty()) {
             return false;
         }
         return true;
@@ -368,12 +368,13 @@ public class ItemForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Information must be required");
         } else {
             Item item = new Item();
-            item.setId(Integer.parseInt(txtID.getText()));
+//            item.setId(Integer.parseInt(txtID.getText()));
             item.setName(txtName.getText());
             CBCategory CBCate = (CBCategory) cbCate.getSelectedItem();
             item.setCategory(CBCate.getId());
             item.setPrice(Integer.parseInt(txtPrice.getText()));
             System.out.println(item.toString());
+            
             boolean kq = itemDAO.AddProduct(item);
             if (kq) {
                 listItem = itemDAO.getAllItems();
@@ -388,7 +389,7 @@ public class ItemForm extends javax.swing.JFrame {
 
 //    Sửa thông tin OK
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
-        if (!validateInput()) {
+        if (txtID.getText().isEmpty() || !validateInput()) {
             JOptionPane.showMessageDialog(this, "Choose Item , please");
         } else {
             int choose = JOptionPane.showConfirmDialog(this, "Do you want edit item " + txtID.getText(), "confirm", JOptionPane.YES_NO_OPTION);
