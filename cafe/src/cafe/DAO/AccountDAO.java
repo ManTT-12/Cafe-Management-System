@@ -128,4 +128,22 @@ public class AccountDAO {
         }
         return acc;
     }
+    
+    public boolean DeleteAcc(int id){
+        conn.getConnection();
+        
+        try{
+            String query = "delete from account where id=?";
+            PreparedStatement st = conn.connect.prepareStatement(query);
+            st.setInt(1, id);
+
+            st.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.closeConnect();
+        }
+        return false;
+    }
 }

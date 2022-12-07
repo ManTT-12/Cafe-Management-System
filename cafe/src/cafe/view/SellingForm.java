@@ -116,7 +116,7 @@ public class SellingForm extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Seller");
+        jLabel8.setText("Buyer");
 
         addBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addBtn.setText("ADD TO BILL");
@@ -169,7 +169,7 @@ public class SellingForm extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Seller", "Name", "Quantity", "Total"
+                "ID", "Buyer", "Name", "Quantity", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -534,6 +534,7 @@ public class SellingForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Deleted bill");
                     getListBill();
                     showBillData();
+                    refreshInput();
                 } else {
                     JOptionPane.showMessageDialog(this, "Delete fail");
                 }

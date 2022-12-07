@@ -61,7 +61,7 @@ public class ViewBills extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Seller", "Item", "DateTime", "Title 5", "Total"
+                "ID", "Buyer", "Item", "DateTime", "Title 5", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
