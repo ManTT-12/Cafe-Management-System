@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 06, 2022 lúc 04:48 PM
+-- Thời gian đã tạo: Th12 10, 2022 lúc 02:32 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.0.25
 
@@ -39,7 +39,7 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id`, `username`, `password`) VALUES
 (1, 'admin1', 'man123'),
-(2, 'admin2', 'nhuhao321');
+(2, 'admin2', 'nhuhao123');
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,13 @@ CREATE TABLE `bill` (
 --
 
 INSERT INTO `bill` (`id`, `buyer`, `pName`, `bDate`, `bQty`, `total`) VALUES
-(2, 'user2', 'Hot socola', '2022-12-06T22:45:24.476064500', 1, 25);
+(1, 'user1', 'Match latte', '', 5, 60),
+(2, 'user2', 'Hot socola', '', 2, 50),
+(3, 'user2', 'Hot socola', '2022-12-07T17:48:10.825970400', 1, 25),
+(4, 'user3', 'Hot socola', '2022-12-07T17:53:14.996640300', 8, 200),
+(5, 'user1', 'Hot coffee', '2022-12-07T17:56:58.331117500', 5, 50),
+(6, 'user1', 'Milk tea boba', '2022-12-07T17:57:08.173155500', 2, 36),
+(7, 'user2', 'Black tea', '2022-12-07T17:57:40.044648900', 2, 40);
 
 -- --------------------------------------------------------
 
@@ -79,12 +85,12 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `cateName`) VALUES
-(1, 'Match'),
-(2, 'Coffee'),
-(3, 'Latte'),
-(4, 'Socola'),
-(5, 'Milk tea'),
-(7, 'Cold');
+(1, 'Coffee'),
+(2, 'Milk tea'),
+(3, 'Tea'),
+(4, 'Machiato'),
+(5, 'Hot'),
+(6, 'Cold');
 
 -- --------------------------------------------------------
 
@@ -104,9 +110,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `category_id`, `price`) VALUES
-(1, 'Match latte', 1, 10),
-(3, 'Hot socola', 4, 25),
-(4, 'Coffee Latte', 3, 10);
+(1, 'Hot coffee', 1, 10),
+(2, 'Milk tea boba', 2, 18),
+(3, 'Black tea', 3, 20),
+(4, 'Socola machiato', 4, 30),
+(5, 'milk coffee', 1, 15);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -151,19 +159,19 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
